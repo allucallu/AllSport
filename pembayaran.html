@@ -1,0 +1,77 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="assets/css/style_pembayaran.css">
+  
+    <title>Pembayaran</title>
+    <script src="dist/sweetalert2.min.css"></script>
+    <script src="dist/sweetalert2.min.js"></script>
+    
+</head>
+<body>
+   <div class="container">
+       <div class="title">Pembayaran</div>
+
+        <form action="#" name="pembayaran">
+           <div class="user-details">
+               <div class="input-box">
+                   <span class="details">Nama Lengkap</span>
+                   <input type="text" placeholder="Masukkan Nama" required name="nama">
+               </div>
+
+               <div class="input-box">
+                <span class="details">No. Telepon/whatsapp</span>
+                <input type="number" placeholder="Masukkan No. Telepon" required name="no_telepon">
+            </div>
+
+            <div class="input-box">
+                <span class="details">Alamat Lengkap</span>
+                <input type="text" placeholder="Masukkan Alamat" required name="alamat">
+            </div>
+
+            <div class="input-box">
+                <span class="details">Kode Pos</span>
+                <input type="number" placeholder="Masukkan Kode Pos" required name="kode_pos">
+            </div>
+
+            <div class="input-box">
+                <span class="details">Kode Barang</span>
+                <input type="text" placeholder="Masukkan Kode Barang" required name="kode_barang">
+            </div>
+
+            <div class="input-box">
+                <span class="details">Pesan</span>
+                <input type="text" placeholder="Pesan anda untuk admin" required name="pesan">
+            </div>
+           </div>
+           <div class="button">
+               <input type="submit" value="Kirim">
+           </div>
+       </form>
+       
+   </div>
+
+   <script src="dist/sweetalert2.all.min.js"></script>
+   <script>
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbydGVAhE3ayUOuTj-c59n27xOIRwk_dOPQM0d6clDHe9V9JgQ98uM4UHTxoxIKFgwbG-g/exec'
+    const form = document.forms['pembayaran']
+  
+    form.addEventListener('submit', e => {
+      e.preventDefault()
+      //ketika tombol kirim di ketik
+      //muncul alert
+      fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+        .then(response => {
+           alert('Paket anda sedang di proses');
+           form.reset()
+            console.log('Success!', response);
+        })
+        .catch(error => console.error('Error!', error.message))
+    })
+  </script>
+  
+  
+</body>
